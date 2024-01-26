@@ -13,6 +13,7 @@ public class HlavniProgram {
         zofka = new Turtle();
 
         zofka.penUp();
+
 //        double strana = 100;
 //        posunSeDoprava(3 * strana);
 //        nakresliPrasatko(strana);
@@ -27,7 +28,6 @@ public class HlavniProgram {
 //        nakresliSlunce(strana);
 
         double strana = 50;
-
         // 5 domu
         posunSeNahoru(3 * strana);
         posunSeDoleva(8 * strana);
@@ -51,6 +51,15 @@ public class HlavniProgram {
         posunSeDoleva(18 * strana);
         posunSeNahoru(6 * strana);
         nakresliSlunce(strana / 2);
+
+        // podpis
+        posunSeDolu(11 * strana);
+        posunSeDoprava(8 * strana);
+        nakresliA(strana);
+        nakresliL(strana);
+        nakresliE(strana);
+        nakresliN(strana);
+        nakresliA(strana);
     }
 
     private void nakresliOsmiuhelnik(double strana) {
@@ -63,6 +72,88 @@ public class HlavniProgram {
         zofka.penUp();
         zofka.turnRight(90);
     }
+
+    private void nakresliA(double strana) {
+        double stranaA = Math.sqrt(10 * Math.pow(strana, 2));
+        double uhel = Math.toDegrees(Math.asin(strana / stranaA));
+        zofka.penDown();
+        zofka.turnRight(uhel);
+        zofka.move(stranaA);
+        zofka.turnRight(180 - 2 * uhel);
+        zofka.move(stranaA);
+        zofka.turnRight(90 + uhel);
+        zofka.penUp();
+        zofka.move(2 * strana);
+        zofka.turnRight(90);
+        zofka.move(2 * strana);
+        zofka.turnRight(90);
+
+        zofka.move(0.8 * strana);
+        zofka.penDown();
+        zofka.move(strana);
+
+        zofka.penUp();
+        zofka.move(0.8 * strana);
+        zofka.turnRight(90);
+        zofka.move(2 * strana);
+        zofka.turnRight(180);
+    }
+
+    private void nakresliL(double strana) {
+        zofka.penDown();
+        zofka.move(3 * strana);
+        zofka.turnRight(180);
+        zofka.move(3 * strana);
+        zofka.turnLeft(90);
+        zofka.move(2 * strana);
+
+        zofka.penUp();
+        zofka.move(0.8 * strana);
+        zofka.turnLeft(90);
+    }
+
+    private void nakresliE(double strana) {
+        zofka.penDown();
+        zofka.move(3 * strana);
+        zofka.turnRight(90);
+        zofka.move(2 * strana);
+        zofka.turnLeft(180);
+        zofka.move(2 * strana);
+        zofka.turnLeft(90);
+        zofka.move(strana);
+        zofka.turnLeft(90);
+        zofka.move(strana);
+        zofka.turnLeft(180);
+        zofka.move(strana);
+        zofka.turnLeft(90);
+        zofka.move(2 * strana);
+        zofka.turnLeft(90);
+        zofka.move(2 * strana);
+
+        zofka.penUp();
+        zofka.move(0.8 * strana);
+        zofka.turnLeft(90);
+    }
+
+    private void nakresliN(double strana) {
+        double stranaN = Math.sqrt(13 * Math.pow(strana, 2));
+        double uhel = Math.toDegrees(Math.asin(2 * strana / stranaN));
+
+        zofka.penDown();
+        zofka.move(3 * strana);
+        zofka.turnRight(180 - uhel);
+        zofka.move(stranaN);
+        zofka.turnLeft(180 - uhel);
+        zofka.move(3 * strana);
+        zofka.turnLeft(180);
+        zofka.move(3 * strana);
+        zofka.turnLeft(90);
+
+        zofka.penUp();
+        zofka.move(0.8 * strana);
+        zofka.turnLeft(90);
+    }
+
 
     private void nakresliDum(double strana) {
         zofka.penDown();
@@ -110,7 +201,7 @@ public class HlavniProgram {
             zofka.turnRight(360 / 50);
         }
         zofka.penUp();
-        zofka.turnRight(360 / 50);
+        zofka.turnRight(360 / 100);
         zofka.turnRight(90);
     }
 
