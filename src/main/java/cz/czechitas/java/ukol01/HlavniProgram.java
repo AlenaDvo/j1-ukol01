@@ -11,21 +11,26 @@ public class HlavniProgram {
 
     public void start() {
         zofka = new Turtle();
-        double strana = 100;
+
 
         zofka.penUp();
-
-        posunSeDoprava(strana * 1.5);
+        double strana = 100;
+        posunSeDoprava(3 * strana);
         nakresliPrasatko(strana);
-        posunSeDoleva(2.5 * strana);
+        posunSeDoleva(3 * strana);
 
         nakresliOsmiuhelnik(strana);
-        posunSeDoleva(1.5 * strana);
+        posunSeDoleva(2.5 * strana);
 
         nakresliKolo(strana);
-        posunSeDoleva(1.5 * strana);
+        posunSeDoleva(2.5 * strana);
 
         nakresliSlunce(strana);
+
+//        double strana = 50;
+//        posunSeNahoru(strana);
+//        posunSeDoleva(5 * strana);
+//        nakresliSlunce(strana);
     }
 
     private void nakresliOsmiuhelnik(double strana) {
@@ -71,14 +76,24 @@ public class HlavniProgram {
 
     private void posunSeDoleva(double strana) {
         zofka.turnLeft(90);
-        zofka.move(strana * 1.5);
+        zofka.move(strana);
         zofka.turnRight(90);
     }
 
     private void posunSeDoprava(double strana) {
         zofka.turnRight(90);
-        zofka.move(strana * 1.5);
+        zofka.move(strana);
         zofka.turnLeft(90);
+    }
+
+    private void posunSeNahoru(double strana) {
+        zofka.move(strana);
+    }
+
+    private void posunSeDolu(double strana) {
+        zofka.turnLeft(180);
+        zofka.move(strana);
+        zofka.turnRight(180);
     }
 
     private void nakresliPrasatko(double strana) {
