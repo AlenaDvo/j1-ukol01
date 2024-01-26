@@ -12,25 +12,45 @@ public class HlavniProgram {
     public void start() {
         zofka = new Turtle();
 
-
         zofka.penUp();
-        double strana = 100;
-        posunSeDoprava(3 * strana);
-        nakresliPrasatko(strana);
-        posunSeDoleva(3 * strana);
-
-        nakresliOsmiuhelnik(strana);
-        posunSeDoleva(2.5 * strana);
-
-        nakresliKolo(strana);
-        posunSeDoleva(2.5 * strana);
-
-        nakresliSlunce(strana);
-
-//        double strana = 50;
-//        posunSeNahoru(strana);
-//        posunSeDoleva(5 * strana);
+//        double strana = 100;
+//        posunSeDoprava(3 * strana);
+//        nakresliPrasatko(strana);
+//        posunSeDoleva(3 * strana);
+//
+//        nakresliOsmiuhelnik(strana);
+//        posunSeDoleva(2.5 * strana);
+//
+//        nakresliKolo(strana);
+//        posunSeDoleva(2.5 * strana);
+//
 //        nakresliSlunce(strana);
+
+        double strana = 50;
+
+        // 5 domu
+        posunSeNahoru(3 * strana);
+        posunSeDoleva(8 * strana);
+        for (int i = 0; i < 5; i++) {
+            nakresliDum(strana);
+            if (i != 4) {
+                posunSeDoprava(3 * strana);
+            }
+        }
+
+        // dum, prase, dum
+        posunSeDolu(4 * strana);
+        posunSeDoleva(15 * strana);
+        nakresliDum(strana);
+        posunSeDoprava(5 * strana);
+        nakresliPrasatko(strana);
+        posunSeDoprava(5 * strana);
+        nakresliDum(strana);
+
+        // slunce
+        posunSeDoleva(18 * strana);
+        posunSeNahoru(6 * strana);
+        nakresliSlunce(strana / 2);
     }
 
     private void nakresliOsmiuhelnik(double strana) {
@@ -42,6 +62,25 @@ public class HlavniProgram {
         }
         zofka.penUp();
         zofka.turnRight(90);
+    }
+
+    private void nakresliDum(double strana) {
+        zofka.penDown();
+        for (int i = 0; i < 4; i++) {
+            zofka.move(strana);
+            zofka.turnRight(90);
+        }
+        zofka.penUp();
+        posunSeNahoru(strana);
+        zofka.penDown();
+        zofka.turnRight(30);
+        zofka.move(strana);
+        zofka.turnRight(120);
+        zofka.move(strana);
+        zofka.penUp();
+        zofka.turnRight(30);
+        zofka.move(strana);
+        zofka.turnRight(180);
     }
 
     private void nakresliKolo(double strana) {
@@ -71,6 +110,7 @@ public class HlavniProgram {
             zofka.turnRight(360 / 50);
         }
         zofka.penUp();
+        zofka.turnRight(360 / 50);
         zofka.turnRight(90);
     }
 
