@@ -11,7 +11,6 @@ public class HlavniProgram {
 
     public void start() {
         zofka = new Turtle();
-
         nakresliPrasatko(100);
     }
 
