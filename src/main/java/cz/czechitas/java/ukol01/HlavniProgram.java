@@ -22,7 +22,7 @@ public class HlavniProgram {
         nakresliOsmiuhelnik(strana);
         posunSeDoleva(1.5 * strana);
 
-        nakresliKolo();
+        nakresliKolo(strana);
         posunSeDoleva(1.5 * strana);
 
         nakresliSlunce(strana);
@@ -39,11 +39,11 @@ public class HlavniProgram {
         zofka.turnRight(90);
     }
 
-    private void nakresliKolo() {
+    private void nakresliKolo(double strana) {
         zofka.turnLeft(90);
         zofka.penDown();
         for (int i = 0; i <= 50; i++) {
-            zofka.move(7);
+            zofka.move(strana / 10);
             zofka.turnRight(360 / 50);
         }
         zofka.penUp();
@@ -55,7 +55,7 @@ public class HlavniProgram {
         zofka.turnLeft(90);
         zofka.penDown();
         for (int i = 0; i <= 50; i++) {
-            zofka.move(7);
+            zofka.move(strana / 10);
             if (i % 4 == 0) {
                 zofka.turnLeft(90);
                 zofka.move(20);
