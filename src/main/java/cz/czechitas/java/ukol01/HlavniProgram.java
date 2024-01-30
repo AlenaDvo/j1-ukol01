@@ -4,6 +4,7 @@ import cz.czechitas.java.ukol01.engine.Turtle;
 
 public class HlavniProgram {
     private Turtle zofka;
+    private final double strana = 50;
 
     public static void main(String[] args) {
         new HlavniProgram().start();
@@ -27,7 +28,7 @@ public class HlavniProgram {
 //
 //        nakresliSlunce(strana);
 
-        double strana = 50;
+
         // 5 domu
         posunSeNahoru(3 * strana);
         posunSeDoleva(8 * strana);
