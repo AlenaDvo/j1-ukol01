@@ -4,7 +4,6 @@ import cz.czechitas.java.ukol01.engine.Turtle;
 
 public class HlavniProgram {
     private Turtle zofka;
-    private final double strana = 50;
 
     public static void main(String[] args) {
         new HlavniProgram().start();
@@ -15,29 +14,12 @@ public class HlavniProgram {
 
         zofka.penUp();
 
-//        double strana = 100;
-//        posunSeDoprava(3 * strana);
-//        nakresliPrasatko(strana);
-//        posunSeDoleva(3 * strana);
-//
-//        nakresliOsmiuhelnik(strana);
-//        posunSeDoleva(2.5 * strana);
-//
-//        nakresliKolo(strana);
-//        posunSeDoleva(2.5 * strana);
-//
-//        nakresliSlunce(strana);
-
+        double strana = 50;
 
         // 5 domu
         posunSeNahoru(3 * strana);
         posunSeDoleva(8 * strana);
-        for (int i = 0; i < 5; i++) {
-            nakresliDum(strana);
-            if (i != 4) {
-                posunSeDoprava(3 * strana);
-            }
-        }
+        nakresliPetDomu(strana);
 
         // dum, prase, dum
         posunSeDolu(4 * strana);
@@ -51,11 +33,15 @@ public class HlavniProgram {
         // slunce
         posunSeDoleva(18 * strana);
         posunSeNahoru(6 * strana);
-        nakresliSlunce(strana / 2);
+        nakresliSlunce(strana / 2.0);
 
         // podpis
         posunSeDolu(11 * strana);
         posunSeDoprava(8 * strana);
+        nakresliALena(strana);
+    }
+
+    private void nakresliALena(double strana) {
         nakresliA(strana);
         nakresliL(strana);
         nakresliE(strana);
@@ -63,25 +49,38 @@ public class HlavniProgram {
         nakresliA(strana);
     }
 
+    private void nakresliPetDomu(double strana) {
+        for (int i = 0; i < 5; i++) {
+            nakresliDum(strana);
+            if (i != 4) {
+                posunSeDoprava(3 * strana);
+            }
+        }
+    }
+
     private void nakresliOsmiuhelnik(double strana) {
         zofka.turnLeft(90);
         zofka.penDown();
         for (int i = 0; i < 8; i++) {
-            zofka.move(strana / 2);
-            zofka.turnRight(360 / 8);
+            zofka.move(strana / 2.0);
+            zofka.turnRight(360 / 8.0);
         }
         zofka.penUp();
         zofka.turnRight(90);
     }
 
     private void nakresliA(double strana) {
-        double stranaA = Math.sqrt(10 * Math.pow(strana, 2));
-        double uhel = Math.toDegrees(Math.asin(strana / stranaA));
+        double rameno = Math.sqrt(10 * Math.pow(strana, 2));
+        double uhel = Math.toDegrees(Math.asin(strana / rameno));
+
+        // 1. sikmy tah nahoru
         zofka.penDown();
         zofka.turnRight(uhel);
-        zofka.move(stranaA);
+        zofka.move(rameno);
         zofka.turnRight(180 - 2 * uhel);
-        zofka.move(stranaA);
+
+        // 2. sikmy tah dolu
+        zofka.move(rameno);
         zofka.turnRight(90 + uhel);
         zofka.penUp();
         zofka.move(2 * strana);
@@ -89,10 +88,12 @@ public class HlavniProgram {
         zofka.move(2 * strana);
         zofka.turnRight(90);
 
+        // pricka
         zofka.move(0.8 * strana);
         zofka.penDown();
         zofka.move(strana);
 
+        // posun na dalsi pismeno
         zofka.penUp();
         zofka.move(0.8 * strana);
         zofka.turnRight(90);
@@ -101,21 +102,28 @@ public class HlavniProgram {
     }
 
     private void nakresliL(double strana) {
+        // svisly tah
         zofka.penDown();
         zofka.move(3 * strana);
         zofka.turnRight(180);
         zofka.move(3 * strana);
         zofka.turnLeft(90);
+
+        // vodorovny tah
         zofka.move(2 * strana);
 
+        // posun na dalsi pismeno
         zofka.penUp();
         zofka.move(0.8 * strana);
         zofka.turnLeft(90);
     }
 
     private void nakresliE(double strana) {
+        // svisly tah
         zofka.penDown();
         zofka.move(3 * strana);
+
+        // horni pricka
         zofka.turnRight(90);
         zofka.move(2 * strana);
         zofka.turnLeft(180);
@@ -123,33 +131,44 @@ public class HlavniProgram {
         zofka.turnLeft(90);
         zofka.move(strana);
         zofka.turnLeft(90);
+
+        // prostredni pricka
         zofka.move(strana);
         zofka.turnLeft(180);
         zofka.move(strana);
         zofka.turnLeft(90);
         zofka.move(2 * strana);
         zofka.turnLeft(90);
+
+        // dolni pricka
         zofka.move(2 * strana);
 
+        // posun na dalsi pismeno
         zofka.penUp();
         zofka.move(0.8 * strana);
         zofka.turnLeft(90);
     }
 
     private void nakresliN(double strana) {
-        double stranaN = Math.sqrt(13 * Math.pow(strana, 2));
-        double uhel = Math.toDegrees(Math.asin(2 * strana / stranaN));
+        double uhlopricka = Math.sqrt(13 * Math.pow(strana, 2));
+        double uhel = Math.toDegrees(Math.asin(2 * strana / uhlopricka));
 
+        // 1. svisly tah
         zofka.penDown();
         zofka.move(3 * strana);
         zofka.turnRight(180 - uhel);
-        zofka.move(stranaN);
+
+        // sikmy tah
+        zofka.move(uhlopricka);
         zofka.turnLeft(180 - uhel);
+
+        // 2. svisly tah
         zofka.move(3 * strana);
         zofka.turnLeft(180);
         zofka.move(3 * strana);
         zofka.turnLeft(90);
 
+        // posun na dalsi pismeno
         zofka.penUp();
         zofka.move(0.8 * strana);
         zofka.turnLeft(90);
@@ -179,11 +198,11 @@ public class HlavniProgram {
         zofka.turnLeft(90);
         zofka.penDown();
         for (int i = 0; i <= 50; i++) {
-            zofka.move(strana / 10);
-            zofka.turnRight(360 / 50);
+            zofka.move(strana / 10.0);
+            zofka.turnRight(360 / 50.0);
         }
         zofka.penUp();
-        zofka.turnRight(360 / 50);
+        zofka.turnRight(360 / 50.0);
         zofka.turnRight(90);
     }
 
@@ -191,7 +210,7 @@ public class HlavniProgram {
         zofka.turnLeft(90);
         zofka.penDown();
         for (int i = 0; i <= 50; i++) {
-            zofka.move(strana / 10);
+            zofka.move(strana / 10.0);
             if (i % 4 == 0) {
                 zofka.turnLeft(90);
                 zofka.move(20);
@@ -199,10 +218,10 @@ public class HlavniProgram {
                 zofka.move(20);
                 zofka.turnLeft(90);
             }
-            zofka.turnRight(360 / 50);
+            zofka.turnRight(360 / 50.0);
         }
         zofka.penUp();
-        zofka.turnRight(360 / 100);
+        zofka.turnLeft(360 / 50.0);
         zofka.turnRight(90);
     }
 
@@ -245,17 +264,17 @@ public class HlavniProgram {
         zofka.move(strana * 1.5);
         nakresliHlavu(strana);
         zofka.turnRight(120);
-        zofka.move(strana / 2);
+        zofka.move(strana / 2.0);
         zofka.turnRight(90);
         zofka.penUp();
-        zofka.move(strana / 2);
+        zofka.move(strana / 2.0);
         zofka.penDown();
         zofka.move(1);
         zofka.turnRight(180);
         zofka.penUp();
-        zofka.move(strana / 2);
+        zofka.move(strana / 2.0);
         zofka.turnLeft(90);
-        zofka.move(strana / 2);
+        zofka.move(strana / 2.0);
 
         // ocas
         zofka.turnRight(90);
@@ -265,19 +284,19 @@ public class HlavniProgram {
         zofka.penDown();
         for (int i = 0; i < 10; i++) {
             zofka.move(10);
-            zofka.turnLeft(180 / 10);
+            zofka.turnLeft(180 / 10.0);
         }
         for (int i = 0; i < 10; i++) {
             zofka.move(7);
-            zofka.turnLeft(180 / 10);
+            zofka.turnLeft(180 / 10.0);
         }
         for (int i = 0; i < 10; i++) {
             zofka.move(3);
-            zofka.turnLeft(180 / 10);
+            zofka.turnLeft(180 / 10.0);
         }
         zofka.penUp();
         zofka.turnLeft(90);
-        zofka.move(strana / 2);
+        zofka.move(strana / 2.0);
         zofka.turnLeft(45);
         zofka.move(strana);
         zofka.turnRight(180);
@@ -298,19 +317,19 @@ public class HlavniProgram {
 //        1. noha
         zofka.turnLeft(150);
         zofka.penDown();
-        zofka.move(strana / 2);
+        zofka.move(strana / 2.0);
         zofka.penUp();
         zofka.turnRight(180);
-        zofka.move(strana / 2);
+        zofka.move(strana / 2.0);
         zofka.turnRight(150);
 
 //        2. noha
         zofka.turnLeft(30);
         zofka.penDown();
-        zofka.move(strana / 2);
+        zofka.move(strana / 2.0);
         zofka.penUp();
         zofka.turnRight(180);
-        zofka.move(strana / 2);
+        zofka.move(strana / 2.0);
         zofka.turnRight(30);
     }
 
